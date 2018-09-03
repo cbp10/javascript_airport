@@ -2,12 +2,14 @@ function Airport() {
 };
 
 Airport.prototype.land = function(plane) {
+  this.hangar << (plane);
   return "Plane landed"
 };
 
 
-
-
+Airport.prototype.hangar = function(capacity) {
+  this.hangar = []
+};
 
 
 function Player() {
