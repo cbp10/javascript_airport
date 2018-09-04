@@ -8,6 +8,7 @@ describe("Airport", function() {
   });
 
 it("should be able to land a plane", function() {
+  spyOn(a1, 'isStormy').and.returnValue(false)
   a1.land(p1)
   expect(a1.planes.includes(p1)).toBe(true);
 });
@@ -18,11 +19,23 @@ it("should return the capacity of the airport", function() {
 });
 
 it("should be able to tell a plane to take off", function() {
-	a1.takeOff(p1)
+  // weather.isStormy.and.returnValue(false)
+  spyOn(a1, 'isStormy').and.returnValue(false)
+  a1.takeOff(p1)
   expect(a1.planes.includes(p1)).toBe(false);
 });
 
-})
+it("should not be able to take off in storm", function() {
+  spyOn(a1, 'isStormy').and.returnValue(true)
+  expect(function() {a1.takeOff(p1)} ).toThrow("Too stormy!")
+});
+
+it("should not be able to take off in storm", function() {
+  spyOn(a1, 'isStormy').and.returnValue(true)
+  expect(function() {a1.land(p1)} ).toThrow("Too stormy!")
+});
+
+}) 
 
 
 // describe("Player", function() {

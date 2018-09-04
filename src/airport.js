@@ -7,12 +7,27 @@ var planes
 var CAPACITY = 20 
 
 Airport.prototype.land = function(plane) {
-  this.planes.push(plane)
+  if(this.isStormy()) {
+    throw('Too stormy!')
+  } else {
+    this.planes.push(plane)
+  }
 };
 
 Airport.prototype.takeOff = function(plane) {
+  if(this.isStormy()) {
+    throw('Too stormy!')
+  } else {
   this.planes.splice(this.planes.indexOf(plane), 1)
+  }
 };
+
+Airport.prototype.isStormy = function() {
+  if (Math.random(1) < 0.5) { 
+    return true
+  } else return false
+};
+
 
 
 
