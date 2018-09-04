@@ -8,9 +8,19 @@ describe("Airport", function() {
   });
 
 it("should be able to land a plane", function() {
-  expect(a1.land(p1)).toEqual("Plane landed");
+  a1.land(p1)
+  expect(a1.planes.includes(p1)).toBe(true);
 });
 
+
+it("should return the capacity of the airport", function() {
+	expect(a1.capacity).toEqual(20);
+});
+
+it("should be able to tell a plane to take off", function() {
+	a1.takeOff(p1)
+  expect(a1.planes.includes(p1)).toBe(false);
+});
 
 })
 
