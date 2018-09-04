@@ -1,10 +1,12 @@
 describe("Airport", function() {
   var a1;
   var p1;
+  var p2;
 
   beforeEach(function() {
     a1 = new Airport();
     p1 = new Plane(); 
+    p2 = new Plane()
   });
 
 it("should be able to land a plane", function() {
@@ -34,6 +36,17 @@ it("should not be able to take off in storm", function() {
   spyOn(a1, 'isStormy').and.returnValue(true)
   expect(function() {a1.land(p1)} ).toThrow("Too stormy!")
 });
+
+it("should not be able to land when the airport is full", function() {
+	// var i
+	// for (i = 0; i < a1.capacity; i ++) {
+	// 	a1.land
+	// }
+	spyOn(a1, 'isStormy').and.returnValue(false)
+	a1.capacity = 1
+	a1.land(p1)
+	expect(function() {a1.land(p2)} ).toThrow("Airport full!")
+})
 
 }) 
 

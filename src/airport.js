@@ -9,7 +9,10 @@ var CAPACITY = 20
 Airport.prototype.land = function(plane) {
   if(this.isStormy()) {
     throw('Too stormy!')
-  } else {
+  } else if (this.isFull()) {
+    throw('Airport full!')
+  }
+  else {
     this.planes.push(plane)
   }
 };
@@ -28,7 +31,11 @@ Airport.prototype.isStormy = function() {
   } else return false
 };
 
-
+Airport.prototype.isFull = function() {
+  if (this.planes.length == this.capacity) { 
+    return true
+  } else return false
+};
 
 
 // function Player() {
